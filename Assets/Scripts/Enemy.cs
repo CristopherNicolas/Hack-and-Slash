@@ -4,11 +4,14 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts
 {
+    [RequireComponent(typeof(AudioSource), typeof(Animator), typeof(NavMeshAgent))]
     public abstract class Enemy : MonoBehaviour
     {
-        public float speed = 1,atakRange=1,hp = 100;
+        public float speed = 1,atakRange=1,hp = 100,damage=10;
         public Animator animator;
         [SerializeField] NavMeshAgent agent;
+        [SerializeField] AudioSource source;
+        [SerializeField] AudioClip clipMuerte,clipAtaque;
         //public virtual void
         private void Awake()
         {
@@ -28,6 +31,13 @@ namespace Assets.Scripts
         public virtual void Atacar()
         {
             animator.SetBool("atk", true);
+            source.PlayOneShot(clipAtaque);
         }
+        public virtual void Morir()
+        {
+            animator.SetTrigger("morir");
+            source.PlayOneShot(clipMuerte);
+        }
+        
     }
 }
