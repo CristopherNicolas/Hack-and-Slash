@@ -39,7 +39,7 @@ cinematicas
             if (Input.GetMouseButtonDown(0))
             {
                 // CameraShake(1,.5f,90,1f);
-                StartCameraAngle(3,1);
+                //StartCameraAngle(3,1);
             }
         }
         public async void CameraShake(float duration,float strenght,int vibrato,float randomless)

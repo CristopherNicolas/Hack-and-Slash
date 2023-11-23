@@ -8,7 +8,7 @@ namespace Assets.Scripts
     /// </summary>
     public class HozPlayer : MonoBehaviour
     {
-        public bool canAtak { get; set; }
+        public bool canAtak;
         private void OnTriggerEnter(Collider other)
         {
             if(other.CompareTag("Enemy"))

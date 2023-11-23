@@ -2,21 +2,47 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Linq;
+using DG.Tweening;
 
 namespace Assets.Scripts
 {
     public class EnemigoCharco : Enemy
     {
-        Transform player;
-        NavMeshAgent agent;
-        float distanciaParaEncharcare = 6;
-        private void Start()
+        public float distanciaParaEncharcare = 6;
+        private void OnTriggerEnter(Collider other)
         {
-            player = Player.instance.transform;
+            if (other.CompareTag("Player") && canDetect)
+            {
+                canDetect = false;
+                Player.instance.hp -= damage;
+                print("falg enemy");
+            }
+        }
+        private IEnumerator Start()
+        {
+            while (true)
+            {
+                while (true)
+                {
+                    yield return new WaitForSeconds(.1f);
+                    if (distanciaParaEncharcare <= agent.remainingDistance && agent.remainingDistance > atakRange)
+                    {
+                        transform.DOScale(new Vector3(1, .1f, 1), 1.3f);
+                        agent.SetDestination(Player.instance.transform.position);
+
+                    }
+                    else if (agent.remainingDistance < atakRange)
+                    {
+                        Atacar();
+                    }
+                }
+            }
         }
         public override void Atacar()
         {
-            base.Atacar();
+          transform.DOScale(Vector3.one, 1.3f);
+            canDetect = true;
+            StartCoroutine(AtaqueCharco());
             
         }
         IEnumerator AtaqueCharco()
@@ -32,14 +58,12 @@ namespace Assets.Scripts
                 });
 
         }
+        public bool canDetect;
         public override void Update()
         {
-
-            if (distanciaParaEncharcare <= agent.remainingDistance && agent.remainingDistance > atakRange)
-                animator.SetBool("encharcarse", true);
-
             agent.SetDestination(Player.instance.transform.position);
-            if (agent.remainingDistance == atakRange && animator.GetBool("atk") is false) Atacar();
+
+         
         }
 
     }
