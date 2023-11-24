@@ -10,7 +10,7 @@ public class PlayerHabilidades : MonoBehaviour
     public float timeScale = .5f;
     [SerializeField] Animator animator;
     // ataque basico estaqueable, si coliciona con con enemigo, actualizar marcador de combo
-    int cantidadDeVecesPrecionado;
+     public int cantidadDeVecesPrecionado;
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && ! Player.instance.pistol.aimCamera.gameObject.activeInHierarchy)

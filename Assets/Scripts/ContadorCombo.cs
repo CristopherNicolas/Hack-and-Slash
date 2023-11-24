@@ -7,22 +7,24 @@ using UnityEngine;
 
 public class ContadorCombo : MonoBehaviour
 {
+    public static ContadorCombo Instance;
     public int comboQuantityCount = 0;
     public float timeToDecreasseCombo=3;
     public float devilTriggerCount;
     public bool dt1,dt2,dt3;
     TMP_Text text;
-    private void Update()
-    {
-        // to test:
-        if (Input.GetMouseButtonDown(0))
-        {
-            AddToCount(1);
-        }
-    }
+    //private void Update()
+    //{
+    //    // to test:
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        AddToCount(1);
+    //    }
+    //}
     private void Awake()
     {
         text = GetComponent<TMP_Text>();
+        Instance = this;
     }
     public void AddToCount(int qantity)
     {   

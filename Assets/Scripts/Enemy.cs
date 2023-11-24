@@ -42,8 +42,10 @@ namespace Assets.Scripts
         IEnumerator DeathDestroy()
         {
             animator.SetTrigger("morir");
-            source.PlayOneShot(clipMuerte);
+            //source.PlayOneShot(clipMuerte);
             agent.isStopped = true;
+            yield return new WaitForSeconds(1);
+            Destroy(gameObject);
             yield break;
         }
     }

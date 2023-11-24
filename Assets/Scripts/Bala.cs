@@ -16,8 +16,11 @@ public class Bala : MonoBehaviour
 		if (other.CompareTag("Enemy"))
 		{
 			other.GetComponent<Enemy>().hp -= 30;
-			Instantiate(particles, transform.position, Quaternion.identity);
+			//Instantiate(particles, transform.position, Quaternion.identity);
+			print("bala impactada");
+			ContadorCombo.Instance.AddToCount(1);
 			Destroy(gameObject);
+			
 		}
 	}
 	private void Update()

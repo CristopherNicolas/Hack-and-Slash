@@ -14,7 +14,7 @@ public class Pistol : MonoBehaviour
     public Animator animator;
     public Transform brazoPistol;
     float pistolCD = .35f;
-
+    public int balas=10;
    
     private void Update()
     {
@@ -23,6 +23,7 @@ public class Pistol : MonoBehaviour
             //rotar al estar apuntando
            Player.instance.transform.parent.Rotate(Vector3.up  , 3 * Input.GetAxis("Mouse X"));
             //brazoPistol.Rotate(Vector3.forward * 3 * Input.GetAxis("Vertical"));
+            animator.SetInteger("atack", 0);
             
         }
         if(Input.GetMouseButtonDown(1) && !aimCamera.gameObject.activeInHierarchy)
@@ -57,7 +58,14 @@ public class Pistol : MonoBehaviour
     {
         //Instantiate(particles);
         //poner sonido disparo
+        if(balas <= 0 )
+        {
+            UISystem.instance.balasCountText.transform.DOPunchScale(Vector3.one / 3, .25f);
+            return;
+        }
+        balas--;
         Instantiate(balaPrefab, canonObject.transform.position,Player.instance.transform.parent.rotation);
         source.GenerateImpulse();
+            UISystem.instance.balasCountText.text = $" X {balas}";
     }
 }

@@ -2,6 +2,7 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -30,6 +31,10 @@ namespace Assets.Scripts
         }
         void Update()
         {
+            if(hp<=0)
+            {
+                SceneManager.LoadScene(2);
+            }
            // if (animator.GetBool("AtkB") is true || animator.GetBool("AtkB1") is true || animator.GetBool("AtkB2") is true) return;
                 float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
@@ -40,7 +45,7 @@ namespace Assets.Scripts
 
             bool gr = isGrounded;
             // rb.MovePosition(rb.position + movementDirection);
-             //transform.Rotate(0, horizontalInput * 100f * Time.deltaTime, 0);
+             transform.parent. Rotate(0, horizontalInput * 100f * Time.deltaTime, 0);
             if(gr is false) movementDirection.y -= gravity* Time.deltaTime;
             if (Input.GetButtonDown("Jump") && gr)
             {
