@@ -13,6 +13,7 @@ namespace Assets.Scripts
             if (canDetect && other.CompareTag("Player"))
             {
                 Player.instance.hp -= hozDamage;
+                canDetect = false;
             }
         }
     }

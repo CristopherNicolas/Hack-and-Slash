@@ -3,6 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 namespace Assets.Scripts
 {
@@ -31,10 +32,10 @@ namespace Assets.Scripts
         }
         void Update()
         {
-            if(hp<=0)
-            {
-                SceneManager.LoadScene(2);
-            }
+            //if(hp<=0)
+            //{
+            //    SceneManager.LoadScene(2);
+            //}
            // if (animator.GetBool("AtkB") is true || animator.GetBool("AtkB1") is true || animator.GetBool("AtkB2") is true) return;
                 float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
@@ -66,7 +67,8 @@ namespace Assets.Scripts
         {
             if (cantidadDeBombas <= 0) return;
             //animator.SetTrigger("lanzarBomba");
-            var obj = Instantiate(bombaPrefab, transform.position, transform.parent.rotation);
+            var obj = Instantiate(bombaPrefab,new Vector3
+                (transform.position.x, transform.position.y, transform.position.z), transform.parent.rotation);
             print(new Vector3(0,transform.parent.rotation.y + bombaImpulso / 3,
                 bombaImpulso) * bombaImpulso    );
 

@@ -25,29 +25,31 @@ namespace Assets.Scripts
                 while (true)
                 {
                     yield return new WaitForSeconds(.1f);
-                    if (distanciaParaEncharcare <= agent.remainingDistance && agent.remainingDistance > atakRange)
+                    if (distanciaParaEncharcare <= agent.remainingDistance && agent.remainingDistance > atakRange
+                        && agent.remainingDistance < 10)
                     {
                         transform.DOScale(new Vector3(1, .1f, 1), 1.3f);
                         agent.SetDestination(Player.instance.transform.position);
 
                     }
-                    else if (agent.remainingDistance < atakRange)
+                    else if (agent.remainingDistance <= atakRange)
                     {
                         Atacar();
                     }
+                    else if (agent.remainingDistance > 10) transform.DOScale(Vector3.one, .25f);
                 }
             }
         }
         public override void Atacar()
         {
-          transform.DOScale(Vector3.one, 1.3f);
             canDetect = true;
             StartCoroutine(AtaqueCharco());
             
         }
         IEnumerator AtaqueCharco()
         {
-            yield return new WaitForSeconds(2.5f);
+          transform.DOScale(Vector3.one, 1.3f);
+            yield return new WaitForSeconds(1f);
             Physics.OverlapSphere(transform.position, 1).ToList().
                 ForEach(e => { 
                     if(e.CompareTag("Player"))
@@ -63,7 +65,9 @@ namespace Assets.Scripts
         {
             agent.SetDestination(Player.instance.transform.position);
 
-         
+            if (hp <= 0 && death == null) { Morir(); return; }
+            else if (hp <= 0 && death is not null) return;
+
         }
 
     }

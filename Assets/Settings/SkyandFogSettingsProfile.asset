@@ -91,9 +91,9 @@ MonoBehaviour:
     m_Value: 0
   type:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 2
   sphericalMode:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   seaLevel:
     m_OverrideState: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
     m_Value: 0.008
   aerosolTint:
     m_OverrideState: 1
-    m_Value: {r: 0.63525575, g: 0.3722855, b: 0.8867924, a: 1}
+    m_Value: {r: 0.54401034, g: 0.56203866, b: 0.7075472, a: 1}
   aerosolMaximumAltitude:
     m_OverrideState: 0
     m_Value: 8289.296
@@ -136,7 +136,7 @@ MonoBehaviour:
     m_Value: 8
   groundTint:
     m_OverrideState: 1
-    m_Value: {r: 0.3301887, g: 0.21582231, b: 0.10746708, a: 1}
+    m_Value: {r: 0.46226418, g: 0.21777418, b: 0.128649, a: 1}
   groundColorTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -351,7 +351,7 @@ MonoBehaviour:
     m_Value: 1
   albedo:
     m_OverrideState: 1
-    m_Value: {r: 0.10399608, g: 0.12752481, b: 0.38679248, a: 1}
+    m_Value: {r: 0.9245283, g: 0.71084017, b: 0.7548156, a: 1}
   globalLightProbeDimmer:
     m_OverrideState: 0
     m_Value: 1
@@ -385,6 +385,34 @@ MonoBehaviour:
   directionalLightsOnly:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &-3011125722105297498
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f034cba68ab55e046ae1445a42f18c0e, type: 3}
+  m_Name: IndirectLightingController
+  m_EditorClassIdentifier: 
+  active: 1
+  indirectDiffuseLightingMultiplier:
+    m_OverrideState: 1
+    m_Value: 4.46
+  indirectDiffuseLightingLayers:
+    m_OverrideState: 1
+    m_Value: 255
+  reflectionLightingMultiplier:
+    m_OverrideState: 1
+    m_Value: 1.14
+  reflectionLightingLayers:
+    m_OverrideState: 1
+    m_Value: 255
+  reflectionProbeIntensityMultiplier:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +433,7 @@ MonoBehaviour:
   - {fileID: -8970078041186466291}
   - {fileID: 1895959190164770918}
   - {fileID: -4282062852477214507}
+  - {fileID: -3011125722105297498}
 --- !u!114 &1142777632297148762
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -429,7 +458,7 @@ MonoBehaviour:
     m_Value: 0
   windOrientation:
     m_OverrideState: 0
-    m_Value: 15
+    m_Value: 319
   windSpeed:
     m_OverrideState: 0
     m_Value: 3.9
@@ -457,7 +486,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.62
+    m_Value: 1.5
   directLightingStrength:
     m_OverrideState: 1
     m_Value: 0.256
